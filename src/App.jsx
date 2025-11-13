@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Plus, Wallet, ChartPie, Layers, Rocket } from 'lucide-react'
+import { Wallet, ChartPie, Layers, Rocket } from 'lucide-react'
 import Hero3D from './components/Hero3D'
 import StatsCards from './components/StatsCards'
 import ExpenseForm from './components/ExpenseForm'
 import ExpensesTable from './components/ExpensesTable'
+import ErrorBoundary from './components/ErrorBoundary'
 
 const backend = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000'
 
@@ -58,7 +59,9 @@ export default function App() {
           <a href="/test" className="text-sm text-slate-300 hover:text-white underline/30">System check</a>
         </header>
 
-        <Hero3D />
+        <ErrorBoundary>
+          <Hero3D />
+        </ErrorBoundary>
 
         <section className="space-y-6">
           <h2 className="text-xl font-semibold tracking-tight flex items-center gap-2"><ChartPie size={18}/> Overview</h2>
